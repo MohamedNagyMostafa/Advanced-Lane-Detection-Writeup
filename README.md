@@ -77,9 +77,12 @@ The below figure demonstrate the location of each window at both sides and how t
 #### Second Phase Algorithm (Stick To the Lane Algorithm)
 
 After locating the lane lines in the road by the first algorithm, this algorithm keeps the drawn polynomials at each lane line fit the new frame that comes from the camera.  When a new frame comes, the surrounded points located inside margin `25` of the left and right side of the polynomial will be stored and a new polynomial will be drawn up to these new points. This algorithm comes from the fact that frames come from the camera in a tiny frame of time, which means changes of the lane line will be small and located on the top of the new frame. However, this new polynomial should have specific criteria to be accepted, otherwise, the previous one will be kept. The criteria are:
-    * The new polynomial should fit new non-zero pixels that didn't be covered by the previous polynomial.
-    * The polynomial curvature in addition to the distance between the top/mid/bottom points should not exceed a specific threshold
-    ![image](https://user-images.githubusercontent.com/20774864/102698101-8f56bb00-4243-11eb-94f4-45b013275b98.png)
+    
+  * The new polynomial should fit new non-zero pixels that didn't be covered by the previous polynomial.
+    
+  * The polynomial curvature in addition to the distance between the top/mid/bottom points should not exceed a specific threshold
+
+![image](https://user-images.githubusercontent.com/20774864/102698101-8f56bb00-4243-11eb-94f4-45b013275b98.png)
 
 The figure below shows the output of the algorithm, the pixels inside the margin is colored in yellow, and the red and blue lines present the polynomial of the previous frame. The new polynomials are colored in green. Each new polynomial will go through the previous criteria if the polynomial satisfies them, It will be colored in blue or red up to which lane it indicates. Otherwise, It will remain green. 
 
